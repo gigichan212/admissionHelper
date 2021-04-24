@@ -1,0 +1,11 @@
+.loginForm {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  div {
+    width: 100%;
+  }
+  .loginSubmit {
+    margin: 10px;
+  }
+}

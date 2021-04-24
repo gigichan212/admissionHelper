@@ -1,0 +1,42 @@
+@import "./header";
+@import "./screenRef";
+
+.header {
+    background-color: #fff;
+    flex: 1;
+    border-radius: 20px;
+    box-sizing: border-box;
+    max-height: 100px;
+    @include header;
+
+    span {
+        cursor: pointer;
+        font-size: 25px;
+        font-weight: normal;
+        color: #666;
+        &:hover {
+            color: #000;
+        }
+    }
+
+    div {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        & > * {
+            margin-bottom: 0;
+            margin-right: 25px;
+        }
+    }
+}
+
+//Make sticky header
+@media screen and (max-width: $medium) {
+    // .header {
+    //     padding-top: 4.5rem;
+    //     // position: sticky;
+    //     // top: 0;
+    //     // z-index: 1;
+    //     // background-color: #fff;
+    // }
+}

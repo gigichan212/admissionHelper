@@ -1,0 +1,14 @@
+.alertMsg {
+  position: fixed;
+  top: 30%;
+  right: 0;
+  padding: 10px 20px;
+  min-width: 200px;
+  width: fit-content;
+  border-radius: 5px;
+  background-color: #fec400;
+  outline: 1px solid #fff;
+  outline-offset: -3px;
+  color: white;
+  z-index: 10;
+}

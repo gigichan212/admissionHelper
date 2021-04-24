@@ -1,0 +1,123 @@
+@import "./header";
+@import "./container";
+@import "./statusBox";
+@import "./screenRef";
+
+@mixin flex_centre {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.option_container {
+    .status_box_rejected {
+        @include status_box($negativeColor);
+    }
+    .status_box_positive {
+        @include status_box($positiveColor);
+    }
+    .status_box_processing {
+        @include status_box($processingColor);
+    }
+}
+
+.top_container {
+    @include topContainer;
+    margin-top: 1rem;
+    position: relative;
+
+    .cancel_btn {
+        @include cancel_btn;
+        color: rgba(0, 0, 0, 0.294);
+
+        &:hover {
+            color: black;
+        }
+    }
+}
+
+.edit_container {
+    @include topContainer;
+    margin: 1rem 0;
+    position: relative;
+
+    .cancel_btn {
+        @include cancel_btn;
+        color: rgba(0, 0, 0, 0.294);
+
+        &:hover {
+            color: black;
+        }
+    }
+}
+
+.bottom_container {
+    margin-bottom: 2rem;
+    padding: 1rem 0.5rem;
+    overflow-x: scroll;
+    @include container;
+
+    table tbody .rowHover {
+        cursor: pointer;
+        &:hover {
+            background-color: rgba(159, 162, 180, 0.08);
+        }
+        .status_box_rejected {
+            @include status_box($negativeColor);
+        }
+        .status_box_positive {
+            @include status_box($positiveColor);
+        }
+        .status_box_processing {
+            @include status_box($processingColor);
+        }
+    }
+
+    table {
+        .no_record {
+            background-color: none;
+            border: none;
+            td {
+                border: none;
+                background-color: transparent;
+            }
+        }
+    }
+
+    .header_container {
+        display: flex;
+        justify-content: space-between;
+
+        span {
+            display: none;
+        }
+    }
+
+    button {
+        background-color: $main-theme-color;
+        border: none;
+        color: white;
+        border-radius: 100%;
+        width: 2.5rem;
+        height: 2.5rem;
+
+        &:hover {
+            width: initial;
+            height: initial;
+            border-radius: 19px;
+            padding: 4px 10px;
+            span {
+                display: initial;
+                margin-left: 10px;
+            }
+        }
+    }
+}
+
+@media screen and (max-width: $medium) {
+    .header_container {
+        button {
+            padding-left: 14px;
+        }
+    }
+}

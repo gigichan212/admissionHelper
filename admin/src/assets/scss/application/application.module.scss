@@ -1,0 +1,213 @@
+@import "../container";
+@import "../header";
+@import "../screenRef";
+
+$width_inner_container: 73vw;
+
+.bottom_container {
+    @include container;
+    margin: 1rem 0;
+    overflow: auto;
+
+    .batch {
+        @include container();
+        box-shadow: 0px 6px 9px rgba(0, 0, 0, 0.12), 0px 2px 6px rgba(0, 0, 0, 0.04);
+
+        width: 73vw;
+
+        .batchUpdateBtns {
+            @include btn($main-button-color);
+            margin: 5px 10px;
+            padding: 5px 20px;
+            border: 2px solid $main-button-color;
+            color: $main-button-color;
+            background: #fff;
+
+            //Size select btn the same as other btn
+            &.select_btn {
+                padding: 2px 13px;
+            }
+
+            select {
+                border: none;
+                font-weight: bolder;
+
+                color: $main-button-color;
+                background: #fff;
+            }
+        }
+    }
+
+    .option_container {
+        display: flex;
+        justify-content: space-between;
+
+        div {
+            display: flex;
+            align-items: baseline;
+        }
+
+        button {
+            @include btn($main-button-color);
+            margin-left: 1rem;
+            width: max-content;
+            padding: 5px 20px;
+
+            i {
+                margin-left: 5px;
+            }
+        }
+
+        .email_btn {
+            @include btn($main-theme-color);
+            position: relative;
+
+            &:disabled {
+                background: #fff;
+                border: 1px solid rgba(204, 204, 204, 0.5);
+                color: #ccc;
+                cursor: no-drop;
+
+                &:hover {
+                    transition: none;
+                    box-shadow: none;
+
+                    &::after {
+                        color: $main-theme-color;
+                        content: attr(data-alert);
+                        position: absolute;
+                        top: 105%;
+                        left: 0;
+                        font-size: 13px;
+                    }
+                }
+            }
+        }
+    }
+
+    .bottom_select {
+        label {
+            color: #9fa2b4;
+        }
+
+        select {
+            width: auto;
+            border: 0px;
+            color: #4b506d;
+            margin-bottom: 2px;
+        }
+    }
+}
+
+@media screen and (max-width: $large) {
+    .bottom_container {
+        .batch {
+            .batchUpdateBtns {
+                select {
+                    background: url(data:image/svg+xml;base64,PHN2ZyBpZD0iTGF5ZXJfMSIgZGF0YS1uYW1lPSJMYXllciAxIiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCA0Ljk1IDEwIj48ZGVmcz48c3R5bGU+LmNscy0xe2ZpbGw6I2ZmZjt9LmNscy0ye2ZpbGw6IzQ0NDt9PC9zdHlsZT48L2RlZnM+PHRpdGxlPmFycm93czwvdGl0bGU+PHJlY3QgY2xhc3M9ImNscy0xIiB3aWR0aD0iNC45NSIgaGVpZ2h0PSIxMCIvPjxwb2x5Z29uIGNsYXNzPSJjbHMtMiIgcG9pbnRzPSIxLjQxIDQuNjcgMi40OCAzLjE4IDMuNTQgNC42NyAxLjQxIDQuNjciLz48cG9seWdvbiBjbGFzcz0iY2xzLTIiIHBvaW50cz0iMy41NCA1LjMzIDIuNDggNi44MiAxLjQxIDUuMzMgMy41NCA1LjMzIi8+PC9zdmc+)
+                        no-repeat 95% 50% !important;
+                    -moz-appearance: none !important;
+                    -webkit-appearance: none !important;
+                    appearance: none !important;
+                }
+
+                &.select_btn {
+                    padding: 2px 20px;
+                }
+            }
+        }
+
+        .bottom_select {
+            select[name="page_items"] {
+                padding: 0 5px !important;
+            }
+        }
+    }
+}
+
+@media screen and (max-width: 1024px) {
+    .option_container {
+        flex-direction: column;
+        .option_container_left {
+            display: flex;
+            flex-direction: row;
+        }
+        div {
+            width: 100% !important;
+            margin: 0;
+            select,
+            input {
+                width: 100%;
+            }
+        }
+        .btn_container {
+            margin: 20px 0;
+        }
+
+        .bottom_select {
+            select {
+                padding: 0;
+            }
+        }
+    }
+    .bottom_container {
+        .batch {
+            width: 100%;
+            justify-content: space-around;
+            display: flex;
+        }
+    }
+
+    .advanceSearch form {
+        flex-direction: column-reverse !important;
+        align-items: flex-start !important;
+        div {
+            margin: 0;
+            width: 100%;
+        }
+    }
+
+    .option_container div {
+        display: block;
+    }
+}
+
+@media screen and (max-width: $medium) {
+    .option_container_left {
+        flex-direction: column !important;
+        div,
+        button {
+            width: 100% !important;
+            margin: 10px 0;
+            margin-left: 0 !important;
+        }
+    }
+
+    .option_container {
+        flex-direction: column-reverse;
+    }
+
+    .batch {
+        flex-direction: column;
+        button {
+            text-align: left;
+            select {
+                padding-left: 0;
+            }
+        }
+    }
+}
+
+// modal transparent background
+.modalBackground {
+    display: block;
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    z-index: 9;
+    background: rgba(238, 238, 238, 0.803);
+    height: 200%;
+    backdrop-filter: grayscale(80%) blur(2px);
+}

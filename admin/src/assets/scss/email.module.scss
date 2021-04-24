@@ -1,0 +1,176 @@
+@import "./container";
+@import "./statusBox";
+
+.edit_container {
+    @include topContainer;
+    margin: 1rem 0;
+    position: relative;
+
+    .emailDetailTitle {
+        display: flex;
+        align-items: center;
+        h5,
+        a {
+            margin-right: 10px;
+        }
+        a {
+            margin-bottom: 0.5rem;
+            border: 1px solid $main-button-color;
+            padding: 5px;
+            border-radius: 5px;
+            text-decoration: none;
+            font-weight: bold;
+            &:hover {
+                color: $main-button-color;
+                padding: 6px;
+                border: 2px solid $main-button-color;
+            }
+        }
+    }
+    .cancel_btn {
+        @include cancel_btn;
+        color: rgba(0, 0, 0, 0.294);
+
+        &:hover {
+            color: black;
+        }
+    }
+
+    .option_container {
+        align-items: baseline;
+        justify-content: flex-start;
+
+        .email_status_container {
+            label {
+                font-size: 13px;
+                font-weight: bold;
+                margin-bottom: 12px;
+            }
+        }
+
+        form {
+            display: flex;
+            flex-wrap: wrap;
+        }
+
+        .status_box_rejected {
+            @include status_box($negativeColor);
+        }
+
+        .status_box_positive {
+            @include status_box($positiveColor);
+        }
+
+        .status_box_processing {
+            @include status_box($processingColor);
+        }
+    }
+}
+
+.bottom_container {
+    @include container;
+    margin: 1rem 0;
+    overflow: auto;
+
+    table tbody tr {
+        cursor: pointer;
+        &:hover {
+            background-color: rgba(159, 162, 180, 0.08);
+        }
+    }
+
+    .batch {
+        @include container();
+        box-shadow: 0px 6px 9px rgba(0, 0, 0, 0.12), 0px 2px 6px rgba(0, 0, 0, 0.04);
+
+        width: 73vw;
+
+        button {
+            @include btn($main-button-color);
+            margin: 5px 10px;
+            padding: 5px 20px;
+            border: 2px solid $main-button-color;
+            color: $main-button-color;
+            background: #fff;
+
+            select {
+                border: none;
+                font-weight: bold;
+
+                color: $main-button-color;
+                background: #fff;
+            }
+        }
+    }
+
+    .bottom_btn {
+        @include btn($main-button-color);
+        margin-left: 1rem;
+        width: max-content;
+        padding: 5px 20px;
+
+        i {
+            margin-left: 5px;
+        }
+    }
+
+    .option_container {
+        display: flex;
+        justify-content: space-between;
+
+        div {
+            display: flex;
+            align-items: baseline;
+        }
+    }
+
+    .bottom_select {
+        width: 30%;
+        display: flex !important;
+        justify-content: flex-start;
+        flex-direction: row;
+        label {
+            color: #9fa2b4;
+        }
+
+        select {
+            border: 0px;
+            color: #4b506d;
+            margin-bottom: 2px;
+            flex: 1;
+        }
+    }
+}
+
+@media screen and (max-width: 1023px) {
+    .option_container {
+        flex-direction: column;
+        div {
+            width: 100% !important;
+            margin: 0;
+            select,
+            input {
+                width: 100%;
+            }
+        }
+        .btn_container {
+            margin: 20px 0;
+        }
+    }
+    .advanceSearch form {
+        flex-direction: column-reverse !important;
+        align-items: flex-start !important;
+        div {
+            margin: 0;
+            width: 100%;
+        }
+    }
+
+    .option_container div {
+        display: block !important;
+    }
+
+    .bottom_select {
+        width: 100%;
+    }
+}

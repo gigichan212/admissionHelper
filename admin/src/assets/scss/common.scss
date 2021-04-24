@@ -1,0 +1,364 @@
+@import "./container";
+@import "./screenRef";
+
+.outer_container {
+    display: flex;
+    align-items: center;
+    height: 100vh;
+    flex-direction: column;
+    overflow-x: hidden;
+    // overflow-y: scroll;
+    position: relative;
+    background-color: rgba(235, 235, 235, 0);
+
+    header {
+        background-color: transparent;
+    }
+    header,
+    main {
+        width: 95%;
+        section {
+            width: 100%;
+        }
+    }
+    main {
+        height: max-content;
+        margin-bottom: 1rem;
+    }
+}
+
+body {
+    font-family: "Noto Sans TC", sans-serif;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    line-height: 2;
+}
+
+.App {
+    display: flex;
+}
+
+@media screen and (max-width: $large) {
+    .App {
+        display: block;
+    }
+
+    .checkBoxColumn {
+        width: 100% !important;
+    }
+
+    main {
+        margin-bottom: 3rem !important;
+    }
+}
+
+.switch_container {
+    flex: 1;
+    width: 100%;
+}
+
+// Form Element
+.myInput {
+    text-align: left;
+    width: 30%;
+    min-width: 200px;
+    label {
+        font-weight: bold;
+        margin: 0;
+        font-size: 13px;
+    }
+    & > * {
+        width: 100%;
+    }
+}
+@media screen and (max-width: 1024px) {
+    .myInput {
+        width: 40%;
+    }
+}
+@media screen and (max-width: 767px) {
+    .myInput {
+        margin: 0;
+        width: 100%;
+    }
+}
+
+input[type="checkbox"],
+input[type="radio"] {
+    width: auto;
+    height: auto;
+    padding: auto;
+}
+
+input,
+textarea,
+select,
+.AsyncSelect {
+    width: 100%;
+    display: block;
+    padding: 0.375rem 0.75rem;
+    font-size: 1rem;
+    font-weight: 400;
+    line-height: 1.5;
+    color: #212529;
+    background-color: #fff;
+    background-clip: padding-box;
+    border: 1px solid #eee;
+    border-radius: 0.25rem;
+    transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+}
+
+@media screen and (max-width: $large) {
+    select,
+    input[type="checkbox"],
+    input[type="date"],
+    input[type="time"] {
+        -moz-appearance: none !important;
+        -webkit-appearance: none !important;
+        appearance: none !important;
+    }
+
+    select,
+    input[type="date"],
+    input[type="time"] {
+        background: url(data:image/svg+xml;base64,PHN2ZyBpZD0iTGF5ZXJfMSIgZGF0YS1uYW1lPSJMYXllciAxIiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCA0Ljk1IDEwIj48ZGVmcz48c3R5bGU+LmNscy0xe2ZpbGw6I2ZmZjt9LmNscy0ye2ZpbGw6IzQ0NDt9PC9zdHlsZT48L2RlZnM+PHRpdGxlPmFycm93czwvdGl0bGU+PHJlY3QgY2xhc3M9ImNscy0xIiB3aWR0aD0iNC45NSIgaGVpZ2h0PSIxMCIvPjxwb2x5Z29uIGNsYXNzPSJjbHMtMiIgcG9pbnRzPSIxLjQxIDQuNjcgMi40OCAzLjE4IDMuNTQgNC42NyAxLjQxIDQuNjciLz48cG9seWdvbiBjbGFzcz0iY2xzLTIiIHBvaW50cz0iMy41NCA1LjMzIDIuNDggNi44MiAxLjQxIDUuMzMgMy41NCA1LjMzIi8+PC9zdmc+)
+            no-repeat 95% 50% !important;
+    }
+
+    input[type="date"],
+    input[type="time"] {
+        height: 40px;
+    }
+
+    input[type="checkbox"] {
+        outline: none;
+        position: relative;
+        width: 1rem;
+        height: 1rem;
+        border: 1px solid black;
+        overflow: hidden;
+        cursor: pointer;
+    }
+
+    input[type="checkbox"]:checked::before {
+        content: "";
+        color: #fff;
+        position: absolute;
+        top: 1px;
+        right: 1px;
+        bottom: 1px;
+        left: 1px;
+        background-color: transparent;
+        background-size: contain;
+        background-position: center center;
+        background-repeat: no-repeat;
+        /* base64 encoded to make things easier to show 
+            normally you would use an image or a font
+        */
+        background-image: url("data:image/svg+xml;base64,PCEtLSBHZW5lcmF0ZWQgYnkgSWNvTW9vbi5pbyAtLT4KPHN2ZyB2ZXJzaW9uPSIxLjEiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIgd2lkdGg9IjQ0OCIgaGVpZ2h0PSI0NDgiIHZpZXdCb3g9IjAgMCA0NDggNDQ4Ij4KPHRpdGxlPjwvdGl0bGU+CjxnIGlkPSJpY29tb29uLWlnbm9yZSI+CjwvZz4KPHBhdGggZD0iTTQxNy43NSAxNDEuNWMwIDYuMjUtMi41IDEyLjUtNyAxN2wtMjE1IDIxNWMtNC41IDQuNS0xMC43NSA3LTE3IDdzLTEyLjUtMi41LTE3LTdsLTEyNC41LTEyNC41Yy00LjUtNC41LTctMTAuNzUtNy0xN3MyLjUtMTIuNSA3LTE3bDM0LTM0YzQuNS00LjUgMTAuNzUtNyAxNy03czEyLjUgMi41IDE3IDdsNzMuNSA3My43NSAxNjQtMTY0LjI1YzQuNS00LjUgMTAuNzUtNyAxNy03czEyLjUgMi41IDE3IDdsMzQgMzRjNC41IDQuNSA3IDEwLjc1IDcgMTd6Ij48L3BhdGg+Cjwvc3ZnPgo=");
+    }
+}
+
+.AsyncSelect {
+    border: none;
+    padding: 0;
+}
+
+.no_border {
+    &.custom {
+        color: #212529;
+        margin-left: 11px;
+        opacity: 0.7;
+    }
+
+    input,
+    textarea,
+    select {
+        opacity: 0.7;
+        appearance: none;
+        border: none;
+        pointer-events: none;
+        background-image: none !important;
+    }
+}
+// Form control buttons e.g. submit
+.controlBtns {
+    display: flex;
+    justify-content: flex-end;
+    width: 100%;
+    padding-left: 0;
+    margin-top: 20px;
+}
+
+// individual field (for application details)
+.individualField {
+    width: 46%;
+}
+// search bar
+.searchBar {
+    width: 35%;
+}
+// advancedSearch
+.advancedSearch {
+    width: 23%;
+}
+.textarea,
+.file,
+.files {
+    width: 100% !important;
+}
+
+@media screen and (max-width: 1024px) {
+    .individualField {
+        width: 40%;
+    }
+    .textarea,
+    .file,
+    .files,
+    .advancedSearch {
+        width: 100%;
+    }
+}
+@media screen and (max-width: 767px) {
+    .individualField {
+        margin: 0;
+        width: 100%;
+    }
+}
+
+// Form Error
+.inputError {
+    border: 1px solid #bf1650;
+}
+.formErrorAlert {
+    font-size: 12px;
+    color: #bf1650;
+    text-align: left;
+}
+.formError {
+    margin-bottom: 0;
+    padding-bottom: 0;
+}
+
+// Tab
+.nav-tabs {
+    border: none;
+    .nav-link {
+        color: #666;
+        margin: 0.5rem 1rem 0.5rem 0;
+        padding: 0;
+        cursor: pointer;
+    }
+}
+
+.nav-tabs .nav-link:focus,
+.nav-tabs .nav-link:hover {
+    color: #000;
+    border: 1px solid transparent;
+}
+.nav-tabs .nav-item.show .nav-link,
+.nav-tabs .nav-link.active {
+    border: 1px solid transparent;
+    border-bottom: 2px solid $main-button-color;
+    color: $main-button-color;
+    font-weight: bold;
+}
+
+// single image preview
+.uploadFileBtn {
+    width: 100%;
+    height: 40px;
+    border: 1px solid $main-button-color;
+    color: $main-button-color;
+    justify-content: center;
+    border-radius: 5px;
+    cursor: pointer;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.uploadFileBtn:hover {
+    transition: all 0.2s;
+}
+.singleImgPreview {
+    width: 100%;
+    position: relative;
+    .previewImgRight {
+        position: relative;
+        padding: 0.375rem 0.75rem;
+        border: 1px solid #ced4da;
+        border-radius: 0.25rem;
+        transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+        display: flex;
+        justify-content: space-evenly;
+        flex-wrap: wrap;
+    }
+    .reUploadImg {
+        position: absolute;
+        background: rgba(0, 0, 0, 0.7);
+        border-radius: 5px;
+        color: #fff;
+        z-index: 10;
+        margin-bottom: 0;
+        padding: 10px;
+        left: 0;
+        top: 0;
+        width: 100px;
+        justify-content: center;
+        cursor: pointer;
+    }
+    img {
+        width: 200px;
+        height: 200px;
+        margin: 10px 0;
+        cursor: pointer;
+    }
+    .deleteFormImg {
+        position: absolute;
+        padding: 0;
+        width: 40px;
+        height: 40px;
+        font-size: 20px;
+        right: 5px;
+        top: 5px;
+        display: flex;
+        align-items: center;
+        z-index: 10000;
+        border: none;
+        cursor: pointer;
+    }
+}
+
+// table
+.table thead th {
+    min-width: 90px;
+}
+@media screen and (max-width: 1024px) {
+    .table thead th {
+        min-width: 140px;
+    }
+}
+
+.checkBoxColumn {
+    width: 30px;
+    input[type="checkbox"] {
+        margin-top: 10px;
+    }
+}
+
+.rdw-editor-wrapper {
+    overflow: scroll;
+}
+
+.rdw-editor-toolbar {
+    position: sticky;
+    top: 0;
+    z-index: 10;
+}
+
+// Pagination
+.pageAmount {
+    color: #4b506d;
+    font-weight: bold;
+}

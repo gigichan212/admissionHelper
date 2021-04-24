@@ -1,0 +1,11 @@
+.loadingContainer {
+  height: 50vh;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  justify-content: center;
+  text-align: left;
+}
+.loadingContainer.full {
+  height: 100vh;
+}

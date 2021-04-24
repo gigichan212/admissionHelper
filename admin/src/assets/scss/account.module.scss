@@ -1,0 +1,168 @@
+@import "./container";
+@import "./screenRef";
+
+// Container
+.top_container,
+.bottom_container {
+    @include topContainer;
+    margin-top: 1rem;
+    position: relative;
+
+    .editIcon {
+        @include font_awesome_icon_with_bg;
+        @include flex_centre;
+        width: 2.5rem !important;
+    }
+    .cancel_btn {
+        @include cancel_btn;
+        color: rgba(0, 0, 0, 0.294);
+
+        &:hover {
+            color: black;
+        }
+    }
+}
+.bottom_container {
+    position: relative;
+}
+
+.top_container,
+.bottom_container {
+    .header_container {
+        display: flex;
+        justify-content: space-between;
+
+        button {
+            background-color: $main-theme-color;
+            border: none;
+            color: white;
+            border-radius: 100%;
+            width: 2.5rem;
+            height: 2.5rem;
+            //Dunno why it moved by 3px
+            padding-top: 3px;
+
+            &:hover {
+                width: initial;
+                height: initial;
+                border-radius: 19px;
+                padding: 4px 10px;
+                span {
+                    display: initial;
+                    margin-left: 10px;
+                }
+            }
+        }
+    }
+
+    table tbody tr {
+        cursor: pointer;
+        &:hover {
+            background-color: rgba(159, 162, 180, 0.08);
+        }
+    }
+
+    h5 {
+        padding: 0;
+        margin: 0;
+        font-weight: bold;
+    }
+}
+
+.systemInfoContainer {
+    @include systemInfoContainer;
+}
+// Title
+.editIcon {
+    @include font_awesome_icon_with_bg;
+    margin-left: 0 !important;
+}
+
+.flex {
+    display: flex;
+    align-items: center;
+    & > * {
+        margin: 10px;
+    }
+    cursor: pointer;
+}
+
+.cardHolder {
+    width: 100%;
+    height: fit-content;
+}
+
+// Form
+.formContent {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: space-between;
+
+    padding-left: 0 !important;
+}
+
+.submitButton {
+    @include btn($main-theme-color);
+    margin: 10px 15px;
+}
+
+.deleteButton {
+    @include btn($red-button-color);
+    background-color: #fff;
+    border: 1px solid $red-button-color;
+    color: $red-button-color;
+    margin: 10px 15px;
+    &:hover {
+        transition: all 0.2s;
+        box-shadow: inset 3px 3px 56px rgba(222, 64, 56, 0.44);
+    }
+}
+.controlBtns {
+    @include controlBtns;
+}
+
+.pointer:hover {
+    cursor: pointer;
+    border: $main-theme-color 2px solid !important;
+    margin: 8px;
+}
+
+.tableHead {
+    color: grey;
+    font-size: 0.8rem;
+    font-weight: 600;
+}
+
+.table {
+    overflow-y: scroll;
+    max-height: 60vh;
+}
+
+// List
+.accountList {
+    margin: 15px;
+}
+.amendButton {
+    @include btn($main-button-color);
+    margin: 0px 5px;
+}
+
+.buttonsContainer {
+    display: flex;
+    justify-content: flex-end;
+}
+
+@media screen and (max-width: $medium) {
+    .bottom_container {
+        .header_container {
+            button {
+                padding-left: 14px !important;
+            }
+        }
+    }
+
+    .controlBtns {
+        flex-direction: column;
+    }
+}

@@ -1,0 +1,97 @@
+@import "./container";
+@import "./statusBox";
+@import "./screenRef";
+
+// Container
+
+.top_container,
+.bottom_container,
+.control_container {
+    @include topContainer;
+    margin-top: 1rem;
+    position: relative;
+    overflow: auto;
+
+    .header_container {
+        h5 {
+            padding: 0;
+            margin: 0;
+            font-weight: bold;
+        }
+    }
+}
+.control_container {
+    background-color: transparent !important;
+    box-shadow: none !important;
+}
+// Top control buttons
+.controlBlocks {
+    display: flex;
+    justify-content: space-between;
+
+    .card {
+        width: 30%;
+        text-align: center;
+        &:hover {
+            cursor: pointer;
+            border: $main-theme-color 2px solid !important;
+            transition: all 0.2s;
+            width: 35%;
+        }
+    }
+}
+@media screen and (max-width: 767px) {
+    .controlBlocks {
+        flex-direction: column;
+        .card {
+            width: 100%;
+            padding: 0;
+            margin: 10px 0;
+            border: transparent 2px solid;
+            .cardTitle {
+                margin-bottom: 0;
+            }
+
+            &:hover {
+                cursor: pointer;
+                border: $main-theme-color 2px solid !important;
+                transition: all 0.2s;
+                width: 100%;
+            }
+        }
+    }
+}
+
+.card {
+    margin-right: 10px;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    .cardTitle {
+        text-align: center;
+        color: grey;
+        font-weight: 600;
+    }
+
+    .cardText {
+        text-align: center;
+        color: black;
+        font-weight: 700;
+        font-size: 2.5rem;
+    }
+}
+
+.status_box_rejected {
+    @include status_box($negativeColor);
+}
+
+.status_box_positive {
+    @include status_box($positiveColor);
+}
+
+.status_box_invalid {
+    @include status_box($invalidColor);
+}
+
+.status_box_processing {
+    @include status_box($processingColor);
+}

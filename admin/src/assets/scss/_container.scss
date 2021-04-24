@@ -1,0 +1,127 @@
+$my-box-shadow: 0px 16px 35px rgba(0, 0, 0, 0.06), 0px 2px 6px rgba(0, 0, 0, 0.04), 0px 0px 1px rgba(0, 0, 0, 0.04);
+$main-theme-color: #ec796f;
+$main-button-color: #0e123c;
+$red-button-color: #f12b2c;
+
+@mixin flex_centre {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+@mixin flex_centre {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+@mixin btn($btn_color) {
+    color: white;
+    background-color: $btn_color;
+    border: none;
+    border-radius: 7px;
+    min-width: 10rem;
+    min-height: 2rem;
+    font-weight: 900;
+    &:hover {
+        // transition: all 0.2s;
+        // box-shadow: 3px 3px 10px $btn_color;
+        box-shadow: 0 0.5em 0.5em -0.4em $btn_color;
+        transform: translateY(-0.25em);
+    }
+}
+
+@mixin controlBtns {
+    display: flex;
+    justify-content: flex-end;
+    width: 100%;
+    padding-left: 0;
+    margin-top: 20px;
+}
+
+@mixin cancel_btn {
+    @include flex_centre;
+    background-color: #fff;
+    border: none;
+
+    position: absolute;
+    right: 1rem;
+    top: 1rem;
+
+    i {
+        font-size: 1rem;
+    }
+}
+
+@mixin font_awesome_icon_with_bg {
+    background-color: $main-theme-color;
+    color: #fff;
+    border-radius: 50%;
+    width: 2.5rem;
+    height: 2.5rem;
+    margin-right: 5px;
+    font-size: 15px;
+    @include flex_centre;
+}
+
+@mixin container {
+    background-color: #fff;
+    flex: 1;
+    width: 80vw;
+    border-radius: 20px;
+    padding: 1.5rem 2.5rem;
+    box-sizing: border-box;
+    box-shadow: $my-box-shadow;
+
+    @media screen and (max-width: 767px) {
+        padding: 1.5rem 1.5rem;
+    }
+}
+
+@mixin centre_container {
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+@mixin option_container {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+}
+
+@mixin topContainer {
+    @include container;
+
+    h6 {
+        display: flex;
+        align-items: center;
+
+        i,
+        span {
+            @include font_awesome_icon_with_bg;
+        }
+    }
+
+    .option_container {
+        @include option_container;
+        flex-wrap: wrap;
+
+        .add_btn {
+            @include btn($main-theme-color);
+        }
+
+        .disabled {
+            background-color: #eee;
+            &:hover {
+                transition: all 0.2s;
+                box-shadow: none;
+            }
+        }
+    }
+}
+
+@mixin systemInfoContainer {
+    padding: 0;
+    margin: 20px 0;
+}

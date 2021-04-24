@@ -1,0 +1,68 @@
+@import "./header";
+@import "./container";
+@import "./screenRef";
+
+// Container
+.top_container {
+    @include topContainer;
+    margin-top: 1rem;
+    position: relative;
+
+    .editIcon {
+        @include font_awesome_icon_with_bg;
+        @include flex_centre;
+        width: 2.5rem !important;
+    }
+}
+.container {
+    @include topContainer;
+    margin: 10px 15px;
+
+    box-shadow: none;
+}
+
+@media screen and (max-width: $medium) {
+    .container {
+        max-height: 50vh;
+        overflow: scroll;
+    }
+}
+.systemInfoContainer {
+    @include systemInfoContainer;
+}
+.hidden {
+    display: none;
+}
+
+// Editor
+.preview {
+    border: 2px solid #0e123c;
+    width: auto;
+    margin: 20px 0;
+    h5 {
+        text-align: center;
+    }
+}
+a {
+    color: #000;
+}
+
+// Control Buttons
+.controlBtns {
+    @include controlBtns;
+}
+.btn,
+.submit {
+    @include btn($main-button-color);
+    margin: 10px 15px 10px 0;
+    width: 40%;
+}
+
+.submit {
+    border-color: $main-theme-color;
+    background-color: $main-theme-color;
+    &:hover {
+        transition: all 0.2s;
+        box-shadow: 3px 3px 10px $main-theme-color;
+    }
+}

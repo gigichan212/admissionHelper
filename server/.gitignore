@@ -1,0 +1,4 @@
+node_modules
+.env
+jwt.ts
+package-lock.json

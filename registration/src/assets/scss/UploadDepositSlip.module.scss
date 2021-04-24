@@ -1,0 +1,9 @@
+.previewImgInner {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  img {
+    width: 70%;
+    margin: 10px;
+  }
+}

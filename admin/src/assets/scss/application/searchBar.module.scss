@@ -1,0 +1,130 @@
+@import "../container";
+@import "../header";
+
+.top_container {
+    @include container;
+    position: relative;
+    h5 {
+        padding: 0;
+        margin: 0;
+        font-weight: bold;
+        text-align: left;
+    }
+
+    .option_container {
+        @include option_container;
+
+        .btn_container {
+            margin-bottom: 7px;
+            display: flex;
+
+            .drop_down_btn {
+                background-color: #fff;
+                border: 2px solid $main-theme-color;
+                border-radius: 100%;
+                width: 2rem;
+                height: 2rem;
+                margin-right: 5px;
+                cursor: pointer;
+                @include flex_centre;
+                i {
+                    color: $main-theme-color;
+                }
+            }
+        }
+        .search_btn {
+            @include btn($main-theme-color);
+        }
+    }
+
+    .resetBtn {
+        background-color: #fff;
+        border: 1px solid $main-button-color;
+        color: $main-button-color;
+        border-radius: 100%;
+        width: 2.5rem;
+        height: 2.5rem;
+
+        position: absolute;
+        top: 5px;
+        right: 5px;
+
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        span {
+            display: none;
+        }
+
+        &:hover {
+            width: initial;
+            height: initial;
+            border-radius: 19px;
+            padding: 4px 10px;
+            span {
+                display: initial;
+                margin-left: 10px;
+            }
+        }
+    }
+
+    .advanceSearch {
+        margin-top: 2rem;
+        .innerContainer {
+            display: flex;
+            flex-direction: column;
+            // align-items: flex-end;
+
+            .input_container {
+                display: flex;
+                flex-wrap: wrap;
+                justify-content: space-between;
+                // div {
+                //     margin-right: 5px;
+                // }
+            }
+        }
+    }
+}
+
+@media screen and (max-width: 1023px) {
+    .option_container {
+        flex-direction: column;
+        div {
+            width: 100% !important;
+            margin: 0;
+            select,
+            input {
+                width: 100%;
+            }
+        }
+
+        .btn_container {
+            margin: 20px 0;
+            display: flex !important;
+            flex-direction: row-reverse;
+            width: 100%;
+            .drop_down_btn {
+                width: 40px !important;
+                height: 40px !important;
+                margin: 0 0 0 10px;
+                margin-right: 0 !important;
+            }
+            .search_btn {
+                flex: 1;
+            }
+        }
+    }
+    .advanceSearch form {
+        flex-direction: column-reverse !important;
+        align-items: flex-start !important;
+        div {
+            margin: 0;
+            width: 100%;
+        }
+    }
+
+    .option_container div {
+        display: block !important;
+    }
+}

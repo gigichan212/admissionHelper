@@ -1,0 +1,15 @@
+export const table = Object.freeze({
+  APPLICATION: "application",
+  APPLICATION_LEVEL: "application_level",
+  APPLICATION_PERIOD: "application_period",
+  APPLICATION_STATUS: "application_status",
+  APPLICATION_TYPE: "application_type",
+  DEPOSIT_SLIP: "deposit_slip",
+  EMAIL_RECORD: "email_record",
+  PARENT_INFORMATION: "parent_information",
+  ROUND: "round",
+  SCHOOL_HISTORY: "school_history",
+  SIBLING: "sibling",
+  USER_ROLE: "user_role",
+  USERS: "users",
+});

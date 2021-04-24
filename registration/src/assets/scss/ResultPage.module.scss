@@ -1,0 +1,51 @@
+.resultTable {
+  text-align: center;
+
+  tr {
+    border: solid 0.5px #7c9ca8;
+    background-color: #fff !important;
+  }
+  td,
+  th {
+    border: none !important;
+  }
+}
+
+// table responsive
+@media screen and (max-width: 767px) {
+  .resultTable {
+    tr {
+      background-color: #fff !important;
+    }
+    thead {
+      //Hide the thead
+      th {
+        border: none;
+        clip: rect(0 0 0 0);
+        height: 1px;
+        margin: -1px;
+        overflow: hidden;
+        padding: 0;
+        position: absolute;
+        width: 1px;
+        border: none !important;
+      }
+    }
+
+    //Each cell is a block and align to right
+    td {
+      display: flex;
+      flex-direction: column;
+      text-align: left;
+      min-height: 50px;
+      border: none !important;
+
+      //Add the column name on the left
+      &:before {
+        content: attr(data-label);
+        float: left;
+        font-weight: bold;
+      }
+    }
+  }
+}

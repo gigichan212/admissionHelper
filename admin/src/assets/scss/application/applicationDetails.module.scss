@@ -1,0 +1,96 @@
+@import "../container";
+
+.top_container {
+    @include container;
+
+    .container {
+        display: flex;
+    }
+}
+
+.formDetail {
+    display: flex;
+    flex-direction: column;
+    margin: 30px 0;
+    .formContentTop {
+        display: flex;
+        flex-direction: column;
+        b {
+            text-align: left;
+            margin: 0.5rem 1rem 0.5rem 0;
+        }
+        hr {
+            margin: 0;
+            border: 0;
+            border-top: 1px solid rgba(0, 0, 0, 0.1);
+        }
+    }
+
+    .formContent {
+        display: flex;
+        flex-direction: row;
+        flex-wrap: wrap;
+        justify-content: space-between;
+    }
+}
+// Control Buttons
+
+// Control Buttons
+.controlBtns {
+    @include controlBtns;
+}
+.btn,
+.submit {
+    @include btn($main-button-color);
+    margin: 10px 15px;
+    width: 20%;
+}
+
+.submit {
+    border-color: $main-theme-color;
+    background-color: $main-theme-color;
+    &:hover {
+        transition: all 0.2s;
+        box-shadow: 3px 3px 10px $main-theme-color;
+    }
+}
+.submit.disabled {
+    background-color: #eee;
+    &:hover {
+        transition: all 0.2s;
+        box-shadow: none;
+    }
+}
+@media screen and (max-width: 767px) {
+    .controlBtns {
+        display: flex;
+        flex-direction: column;
+        .btn,
+        .submit {
+            margin: 10px 0;
+            width: 100%;
+        }
+    }
+}
+
+// tab
+.pastEducation,
+.parent,
+.sibling {
+    width: 100%;
+
+    .formTabContent {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-between;
+    }
+    textarea {
+        width: 100%;
+    }
+}
+
+//System Info
+.systemInfoContainer {
+    @include systemInfoContainer;
+    text-align: left;
+}
