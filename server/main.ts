@@ -25,10 +25,8 @@ app.use(
       "http://localhost:2000",
       "https://admissionhelper.site",
       "https://admin.admissionhelper.site",
-      "http://192.168.168.131:3000",
-      "http://192.168.168.131:2000",
-      "http://192.168.168.131:3000",
-      "http://192.168.168.131:2000",
+      "https://admissionhelper.online",
+      "https://admin.admissionhelper.online",
     ],
   })
 );
