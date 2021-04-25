@@ -93,7 +93,7 @@ backend-deploy:
   script:
     - ssh ubuntu@${ELASTIC_IP}
       "cd final-project;
-      git pull ${ORIGIN_NAME} production;
+      git pull origin production;
       cd server;
       docker-compose down;
       sudo docker-compose up -d --build;
