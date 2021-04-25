@@ -85,15 +85,15 @@ backend-deploy:
     - ssh-add private.pem > /dev/null
     - mkdir -p ~/.ssh
     - chmod 700 ~/.ssh
-    - ssh-keyscan -H 54.255.4.81 > ~/.ssh/known_hosts
+    - ssh-keyscan -H ${ELASTIC_IP} > ~/.ssh/known_hosts
     - chmod 644 ~/.ssh/known_hosts
   stage: backend-deploy
   only:
     - production
   script:
-    - ssh ubuntu@54.255.4.81
-      "cd c13-final-project-07-tw;
-      git pull origin production;
+    - ssh ubuntu@${ELASTIC_IP}
+      "cd admission-helper;
+      git pull ${ORIGIN_NAME} production;
       cd server;
       docker-compose down;
       sudo docker-compose up -d --build;
