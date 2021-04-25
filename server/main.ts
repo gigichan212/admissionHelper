@@ -21,8 +21,8 @@ app.use(
     origin: [
       "http://localhost:3466",
       "http://localhost:3002",
-      "https://admissionhelper.site",
-      "https://admin.admissionhelper.site",
+      "http://localhost:3000",
+      "http://localhost:2000",
       "https://admissionhelper.online",
       "https://admin.admissionhelper.online",
     ],
