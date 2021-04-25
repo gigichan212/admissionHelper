@@ -42,9 +42,6 @@ react-build-registration:
 react-deploy-admin:
   image: "python:3.6"
   stage: react-deploy
-  variables:
-    AWS_ACCESS_KEY_ID: $ADMIN_AWS_ACCESS_KEY_ID
-    AWS_SECRET_ACCESS_KEY: $ADMIN_AWS_SECRET_ACCESS_KEY
   before_script:
     - pip install awscli
   dependencies:
@@ -58,9 +55,6 @@ react-deploy-admin:
 react-deploy-registration:
   image: "python:3.6"
   stage: react-deploy
-  variables:
-    AWS_ACCESS_KEY_ID: $REGISTRATION_AWS_ACCESS_KEY_ID
-    AWS_SECRET_ACCESS_KEY: $REGISTRATION_AWS_SECRET_ACCESS_KEY
   before_script:
     - pip install awscli
   dependencies:
@@ -81,7 +75,6 @@ backend-testing:
   stage: backend-testing
   script:
     - yarn jest
-
 
 backend-deploy:
   before_script:
@@ -105,5 +98,3 @@ backend-deploy:
       docker-compose down;
       sudo docker-compose up -d --build;
       "
-        
-        
