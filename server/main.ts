@@ -23,8 +23,6 @@ app.use(
       "http://localhost:3002",
       "http://localhost:3000",
       "http://localhost:2000",
-      "https://admissionhelper.site",
-      "https://admin.admissionhelper.site",
       "https://admissionhelper.online",
       "https://admin.admissionhelper.online",
     ],
