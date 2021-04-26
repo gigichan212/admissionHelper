@@ -1,0 +1,106 @@
+image: node:latest
+
+stages:
+  # - react-testing
+  - react-build
+  - react-deploy
+  - backend-testing
+  - backend-deploy
+
+variables:
+  POSTGRES_DB: itdoesnotmatter
+  POSTGRES_USER: postgres
+  POSTGRES_PASSWORD: postgres
+  POSTGRES_HOST: postgres
+
+react-build-admin:
+  stage: react-build
+  only:
+    - production
+  before_script:
+    - cd admin/
+  script:
+    - yarn install
+    - GENERATE_SOURCEMAP=FALSE CI=false yarn build
+  artifacts:
+    paths:
+      - admin/build
+
+react-build-registration:
+  stage: react-build
+  only:
+    - production
+  before_script:
+    - cd registration/
+  script:
+    - yarn install
+    - GENERATE_SOURCEMAP=FALSE CI=false yarn build
+  artifacts:
+    paths:
+      - registration/build
+
+react-deploy-admin:
+  image: "python:3.6"
+  stage: react-deploy
+  variables:
+    AWS_ACCESS_KEY_ID: $AWS_ACCESS_KEY_ID
+    AWS_SECRET_ACCESS_KEY: $AWS_SECRET_ACCESS_KEY
+  before_script:
+    - pip install awscli
+  dependencies:
+    - react-build-admin
+  only:
+    - production
+  script:
+    - aws s3 sync admin/build s3://${ADMIN_BUCKET_NAME} --delete
+    - aws cloudfront create-invalidation --distribution-id ${ADMIN_CLOUDFRONT_DISTRIBUTION} --paths "/*"
+
+react-deploy-registration:
+  image: "python:3.6"
+  stage: react-deploy
+  variables:
+    AWS_ACCESS_KEY_ID: $AWS_ACCESS_KEY_ID
+    AWS_SECRET_ACCESS_KEY: $AWS_SECRET_ACCESS_KEY
+  before_script:
+    - pip install awscli
+  dependencies:
+    - react-build-registration
+  only:
+    - production
+  script:
+    - aws s3 sync registration/build s3://${REGISTRATION_BUCKET_NAME} --delete
+    - aws cloudfront create-invalidation --distribution-id ${REGISTRATION_CLOUDFRONT_DISTRIBUTION} --paths "/*"
+
+backend-testing:
+  services:
+    - postgres:latest
+  before_script:
+    - cd server
+    - yarn install
+    - yarn knex migrate:latest --env test
+  stage: backend-testing
+  script:
+    - yarn jest
+
+backend-deploy:
+  before_script:
+    - "which ssh-agent || ( apt-get update -y && apt-get install openssh-client -y )"
+    - eval $(ssh-agent -s)
+    - echo "$SSH_PRIVATE_KEY" | tr -d '\r' > private.pem
+    - chmod 400 private.pem
+    - ssh-add private.pem > /dev/null
+    - mkdir -p ~/.ssh
+    - chmod 700 ~/.ssh
+    - ssh-keyscan -H 54.179.4.138 > ~/.ssh/known_hosts
+    - chmod 644 ~/.ssh/known_hosts
+  stage: backend-deploy
+  only:
+    - production
+  script:
+    - ssh ubuntu@54.179.4.138
+      "cd c13-final-project-07-tw;
+      git pull origin production;
+      cd server;
+      docker-compose down;
+      sudo docker-compose up -d --build;
+      "
