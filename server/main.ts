@@ -23,12 +23,8 @@ app.use(
       "http://localhost:3002",
       "http://localhost:3000",
       "http://localhost:2000",
-      "https://admissionhelper.site",
-      "https://admin.admissionhelper.site",
-      "http://192.168.168.131:3000",
-      "http://192.168.168.131:2000",
-      "http://192.168.168.131:3000",
-      "http://192.168.168.131:2000",
+      "https://thisisgigiportfolio.site",
+      "https://admin.thisisgigiportfolio.site",
     ],
   })
 );

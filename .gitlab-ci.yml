@@ -4,7 +4,7 @@ stages:
   # - react-testing
   - react-build
   - react-deploy
-  - backend-testing
+  # - backend-testing
   - backend-deploy
 
 variables:
@@ -71,16 +71,16 @@ react-deploy-registration:
     - aws s3 sync registration/build s3://${REGISTRATION_BUCKET_NAME} --delete
     - aws cloudfront create-invalidation --distribution-id ${REGISTRATION_CLOUDFRONT_DISTRIBUTION} --paths "/*"
 
-backend-testing:
-  services:
-    - postgres:latest
-  before_script:
-    - cd server
-    - yarn install
-    - yarn knex migrate:latest --env test
-  stage: backend-testing
-  script:
-    - yarn jest
+# backend-testing:
+#   services:
+#     - postgres:latest
+#   before_script:
+#     - cd server
+#     - yarn install
+#     - yarn knex migrate:latest --env test
+#   stage: backend-testing
+#   script:
+#     - yarn jest
 
 backend-deploy:
   before_script:
@@ -98,7 +98,7 @@ backend-deploy:
     - production
   script:
     - ssh ubuntu@54.179.4.138
-      "cd c13-final-project-07-tw;
+      "cd admissionhelper;
       git pull origin production;
       cd server;
       docker-compose down;
