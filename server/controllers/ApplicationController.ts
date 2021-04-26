@@ -366,7 +366,10 @@ export class ApplicationController {
         Key: req.params.imageKey,
       };
       s3.getObject(params, function (err: Error, data: any) {
-        res.writeHead(200, { "Content-Type": "image/jpeg" });
+        res.writeHead(200, {
+          "Content-Type": "image/jpeg",
+          "Access-Control-Allow-Origin": "*",
+        });
         res.write(data.Body, "binary");
         res.end(null, "binary");
         return;
