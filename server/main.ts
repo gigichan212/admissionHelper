@@ -19,12 +19,10 @@ app.use(express.urlencoded({ extended: true }));
 app.use(
   cors({
     origin: [
-      "http://localhost:3466",
-      "http://localhost:3002",
-      "http://localhost:3000",
-      "http://localhost:2000",
-      "https://admissionhelper.online",
-      "https://admin.admissionhelper.online",
+      process.env.CORS_LOCAL_ADMIN_ORIGIN!,
+      process.env.CORS_LOCAL_REGISTRATION_ORIGIN!,
+      process.env.CORS_REGISTRATION_ORIGIN!,
+      process.env.CORS_ADMIN_ORIGIN!,
     ],
   })
 );
