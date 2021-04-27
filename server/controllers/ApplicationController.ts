@@ -362,24 +362,38 @@ export class ApplicationController {
       }
 
       const params = {
-        Bucket: "frd-final-project",
+        Bucket: process.env.AWS_UPLOAD_BUCKET_NAME,
         Key: req.params.imageKey,
       };
-      s3.getObject(params, function (err: Error, data: any) {
-        if (err) {
-          console.log(err);
-          res
-            .status(httpStatusCodes.INTERNAL_SERVER_ERROR)
-            .json({ message: "internal server error" });
+
+      if (!params) {
+        res
+          .status(httpStatusCodes.INTERNAL_SERVER_ERROR)
+          .json({ message: "s3 params is not found" });
+        return;
+      }
+
+      s3.getObject(
+        params as {
+          Bucket: string;
+          Key: string;
+        },
+        function (err: Error, data: any) {
+          if (err) {
+            console.log(err);
+            res
+              .status(httpStatusCodes.INTERNAL_SERVER_ERROR)
+              .json({ message: "internal server error" });
+            return;
+          }
+          res.writeHead(200, {
+            "Content-Type": "image/jpeg",
+          });
+          res.write(data.Body, "binary");
+          res.end(null, "binary");
           return;
         }
-        res.writeHead(200, {
-          "Content-Type": "image/jpeg",
-        });
-        res.write(data.Body, "binary");
-        res.end(null, "binary");
-        return;
-      });
+      );
     } catch (err) {
       logger.error(err.message);
       res
