@@ -20,7 +20,6 @@ react-build-admin:
   before_script:
     - cd admin/
   script:
-    - yarn add node-sass
     - yarn install
     - GENERATE_SOURCEMAP=FALSE CI=false yarn build
   artifacts:
