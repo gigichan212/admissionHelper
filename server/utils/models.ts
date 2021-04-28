@@ -50,6 +50,7 @@ export interface InfoForEmail {
     application_year: number;
     interview_date_time?: string;
     loginURL?: string;
+    registration_url?: string;
   };
 }
 

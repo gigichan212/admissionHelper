@@ -4,7 +4,11 @@ stages:
   # - react-testing
   - react-build
   - react-deploy
+<<<<<<< HEAD
   # - backend-testing
+=======
+  - backend-testing
+>>>>>>> 895de2fef4ce2f15459c9554d962c81527c28291
   - backend-deploy
 
 variables:
@@ -42,9 +46,12 @@ react-build-registration:
 react-deploy-admin:
   image: "python:3.6"
   stage: react-deploy
+<<<<<<< HEAD
   variables:
     AWS_ACCESS_KEY_ID: $AWS_ACCESS_KEY_ID
     AWS_SECRET_ACCESS_KEY: $AWS_SECRET_ACCESS_KEY
+=======
+>>>>>>> 895de2fef4ce2f15459c9554d962c81527c28291
   before_script:
     - pip install awscli
   dependencies:
@@ -58,9 +65,12 @@ react-deploy-admin:
 react-deploy-registration:
   image: "python:3.6"
   stage: react-deploy
+<<<<<<< HEAD
   variables:
     AWS_ACCESS_KEY_ID: $AWS_ACCESS_KEY_ID
     AWS_SECRET_ACCESS_KEY: $AWS_SECRET_ACCESS_KEY
+=======
+>>>>>>> 895de2fef4ce2f15459c9554d962c81527c28291
   before_script:
     - pip install awscli
   dependencies:
@@ -71,16 +81,16 @@ react-deploy-registration:
     - aws s3 sync registration/build s3://${REGISTRATION_BUCKET_NAME} --delete
     - aws cloudfront create-invalidation --distribution-id ${REGISTRATION_CLOUDFRONT_DISTRIBUTION} --paths "/*"
 
-# backend-testing:
-#   services:
-#     - postgres:latest
-#   before_script:
-#     - cd server
-#     - yarn install
-#     - yarn knex migrate:latest --env test
-#   stage: backend-testing
-#   script:
-#     - yarn jest
+backend-testing:
+  services:
+    - postgres:latest
+  before_script:
+    - cd server
+    - yarn install
+    - yarn knex migrate:latest --env test
+  stage: backend-testing
+  script:
+    - yarn jest
 
 backend-deploy:
   before_script:
@@ -91,14 +101,14 @@ backend-deploy:
     - ssh-add private.pem > /dev/null
     - mkdir -p ~/.ssh
     - chmod 700 ~/.ssh
-    - ssh-keyscan -H 54.179.4.138 > ~/.ssh/known_hosts
+    - ssh-keyscan -H ${ELASTIC_IP} > ~/.ssh/known_hosts
     - chmod 644 ~/.ssh/known_hosts
   stage: backend-deploy
   only:
     - production
   script:
-    - ssh ubuntu@54.179.4.138
-      "cd admissionhelper;
+    - ssh ubuntu@${ELASTIC_IP}
+      "cd ${SERVER_FOLDER_NAME};
       git pull origin production;
       cd server;
       docker-compose down;

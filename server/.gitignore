@@ -3,3 +3,4 @@ node_modules
 jwt.ts
 package-lock.json
 /data/certbot/
+init-letsencrypt.sh

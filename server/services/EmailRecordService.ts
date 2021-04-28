@@ -49,6 +49,7 @@ export class EmailRecordService {
           interview_date_time: moment(infoFormDb["interview_date_time"]).format(
             "YYYY-MM-DD HH:mm"
           ),
+          registration_url: process.env.APP_FRONTEND_REGISTRATION_HOST,
         },
       });
     }
