@@ -4,11 +4,7 @@ stages:
   # - react-testing
   - react-build
   - react-deploy
-<<<<<<< HEAD
-  # - backend-testing
-=======
   - backend-testing
->>>>>>> 895de2fef4ce2f15459c9554d962c81527c28291
   - backend-deploy
 
 variables:
@@ -46,12 +42,6 @@ react-build-registration:
 react-deploy-admin:
   image: "python:3.6"
   stage: react-deploy
-<<<<<<< HEAD
-  variables:
-    AWS_ACCESS_KEY_ID: $AWS_ACCESS_KEY_ID
-    AWS_SECRET_ACCESS_KEY: $AWS_SECRET_ACCESS_KEY
-=======
->>>>>>> 895de2fef4ce2f15459c9554d962c81527c28291
   before_script:
     - pip install awscli
   dependencies:
@@ -65,12 +55,6 @@ react-deploy-admin:
 react-deploy-registration:
   image: "python:3.6"
   stage: react-deploy
-<<<<<<< HEAD
-  variables:
-    AWS_ACCESS_KEY_ID: $AWS_ACCESS_KEY_ID
-    AWS_SECRET_ACCESS_KEY: $AWS_SECRET_ACCESS_KEY
-=======
->>>>>>> 895de2fef4ce2f15459c9554d962c81527c28291
   before_script:
     - pip install awscli
   dependencies:
