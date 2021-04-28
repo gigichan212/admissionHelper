@@ -362,7 +362,7 @@ export class ApplicationController {
       }
 
       const params = {
-        Bucket: "frd-final-project",
+        Bucket: "gigiadmissionhelper",
         Key: req.params.imageKey,
       };
       s3.getObject(params, function (err: Error, data: any) {

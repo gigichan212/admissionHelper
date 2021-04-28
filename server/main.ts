@@ -45,7 +45,7 @@ export const s3 = new aws.S3({
 export const upload = multer({
   storage: multerS3({
     s3: s3,
-    bucket: "frd-final-project",
+    bucket: "gigiadmissionhelper",
     metadata: (req, file, cb) => {
       cb(null, { fieldName: file.fieldname });
     },
